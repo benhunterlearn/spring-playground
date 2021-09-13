@@ -26,6 +26,7 @@ class HelloControllerTest {
         RequestBuilder request = MockMvcRequestBuilders.get("/").accept(MediaType.TEXT_PLAIN);  // .contentType() also available
         this.mvc.perform(request)
                 .andExpect(status().isOk())
+                .andExpect(status().is(200))
                 .andExpect(content().string("Hello friend."));
     }
 
@@ -46,10 +47,9 @@ class HelloControllerTest {
     @Test
     public void testMathPi() throws Exception{
         String expected = String.valueOf(Math.PI);
-        
+
         this.mvc.perform(MockMvcRequestBuilders.get("/math/pi"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(expected));
-
     }
 }
