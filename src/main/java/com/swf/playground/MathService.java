@@ -21,6 +21,9 @@ public class MathService {
     private int width;
     private int height;
 
+    // for area calculations
+    private MathArea mathArea;
+
     private WebRequest webRequest;  // not set by Spring Web MVC POJO mapping.
     private Map<String, String> querystring;
 
@@ -35,6 +38,10 @@ public class MathService {
         this.height = height;
     }
 
+    public MathService(MathArea mathArea) {
+        this.mathArea = mathArea;
+    }
+
     public static MathService buildVolumeMathService(int length, int width, int height) {
         return new MathService("volume", length, width, height);
     }
@@ -42,6 +49,9 @@ public class MathService {
     @Override
     public String toString() {
 
+        if (mathArea != null) {
+            return mathArea.toString();
+        }
         if (operation == null) {
             if (x != null && y != null) {
                 operation = "add";

@@ -4,7 +4,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/math")
@@ -30,5 +29,11 @@ public class MathController {
     @RequestMapping("/volume/{length}/{width}/{height}")
     public String requestVolume(@PathVariable int length, @PathVariable int width, @PathVariable int height) {
         return MathService.buildVolumeMathService(length, width, height).toString();
+    }
+
+    @RequestMapping("/area")
+    public String requestArea(MathArea mathArea) {
+        MathService mathService = new MathService(mathArea);
+        return mathArea.toString();
     }
 }

@@ -10,7 +10,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -124,4 +123,41 @@ class MathControllerTest {
                 .andExpect(content().string(expected));
     }
 
+
+    @Test
+    public void testPostMathAreaCircleWithRadius() throws Exception {
+        String expected = "Area of a circle with a radius of 4 is 50.26548";
+        RequestBuilder request = MockMvcRequestBuilders.post("/math/area/")
+                .param("type", "circle")
+                .param("radius", "4")
+                .accept(MediaType.APPLICATION_FORM_URLENCODED);
+        this.mvc.perform(request)
+                .andExpect(status().isOk())
+                .andExpect(content().string(expected));
+    }
+
+    @Test
+    public void testPostMathAreaRectangleWithHeightWidth() throws Exception {
+        String expected = "Area of a 4x7 rectangle is 28";
+        RequestBuilder request = MockMvcRequestBuilders.post("/math/area/")
+                .param("type", "rectangle")
+                .param("width", "4")
+                .param("height", "7")
+                .accept(MediaType.APPLICATION_FORM_URLENCODED);
+        this.mvc.perform(request)
+                .andExpect(status().isOk())
+                .andExpect(content().string(expected));
+    }
+
+    @Test
+    public void testPostMathAreaRectangleInvalid() throws Exception {
+        String expected = "Invalid";
+        RequestBuilder request = MockMvcRequestBuilders.post("/math/area/")
+                .param("type", "rectangle")
+                .param("radius", "5")
+                .accept(MediaType.APPLICATION_FORM_URLENCODED);
+        this.mvc.perform(request)
+                .andExpect(status().isOk())
+                .andExpect(content().string(expected));
+    }
 }
