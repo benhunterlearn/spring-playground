@@ -80,11 +80,33 @@ class MathControllerTest {
                 .andExpect(content().string(expected));
     }
 
-
     @Test
     public void testPostCalculateSumMultipleOperands() throws Exception {
         String expected = "4 + 5 + 6 = 15";
         RequestBuilder request = MockMvcRequestBuilders.post("/math/sum?n=4&n=5&n=6")
+                .accept(MediaType.TEXT_PLAIN);
+        this.mvc.perform(request)
+                .andExpect(status().isOk())
+                .andExpect(content().string(expected));
+    }
+
+    @Test
+    public void testPostCalculateSumMultipleOperandsAndExtraParameters() throws Exception {
+        String expected = "4 + 5 + 6 = 15";
+        RequestBuilder request = MockMvcRequestBuilders.post("/math/sum?n=4&n=5&n=6&x=7&y=99")
+                .accept(MediaType.TEXT_PLAIN);
+        this.mvc.perform(request)
+                .andExpect(status().isOk())
+                .andExpect(content().string(expected));
+    }
+
+    @Test
+    public void testPostVolumeWithLengthWidthHeight() throws Exception {
+        // POST /math/volume/3/4/5 should render the result The volume of a 3x4x5 rectangle is 60
+        // PATCH /math/volume/6/7/8 should render the result The volume of a 6x7x8 rectangle is 336
+
+        String expected = "The volume of a 3x4x5 rectangle is 60";
+        RequestBuilder request = MockMvcRequestBuilders.post("/math/volume/3/4/5")
                 .accept(MediaType.TEXT_PLAIN);
         this.mvc.perform(request)
                 .andExpect(status().isOk())

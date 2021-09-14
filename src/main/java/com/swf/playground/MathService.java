@@ -1,28 +1,58 @@
 package com.swf.playground;
 
+import org.springframework.web.context.request.WebRequest;
+
 import java.util.List;
+import java.util.Map;
 
 public class MathService {
 
     private String operation;
+
+    // x and y for the calculate operation
     private String x;
     private String y;
+
+    // n for the sum operation
     private List<String> n;
 
-    public MathService(String operation) {
+    // length, width, height for the volume operation
+    private int length;
+    private int width;
+    private int height;
+
+    private WebRequest webRequest;  // not set by Spring Web MVC POJO mapping.
+    private Map<String, String> querystring;
+
+    public MathService() {
+        // Default constructor needed for Spring Web MVC.
+    }
+
+    public MathService(String operation, int length, int width, int height) {
         this.operation = operation;
+        this.length = length;
+        this.width = width;
+        this.height = height;
+    }
+
+    public static MathService buildVolumeMathService(int length, int width, int height) {
+        return new MathService("volume", length, width, height);
     }
 
     @Override
     public String toString() {
 
         if (operation == null) {
-            operation = "add";
+            if (x != null && y != null) {
+                operation = "add";
+            } else if (n != null) {
+                operation = "sum";
+            }
         }
 
         int intX = 0;
         int intY = 0;
-        if (n == null) {
+        if (x != null && y != null) {
             intX = Integer.valueOf(x);
             intY = Integer.valueOf(y);
         }
@@ -42,8 +72,11 @@ public class MathService {
             result = intX / intY;
             output = x + " / " + y + " = " + result;
         } else if (operation.equals("sum")) {
-            output = sum();
+            return sum();
+        } else if (operation.equals("volume")) {
+            return volume();
         }
+
         return output;
     }
 
@@ -59,6 +92,11 @@ public class MathService {
         output.append(" = " + result);
 
         return output.toString();
+    }
+
+    private String volume() {
+        int result = length * width * height;
+        return String.format("The volume of a %dx%dx%d rectangle is %d", length, width, height, result);
     }
 
     public String getOperation() {
@@ -91,5 +129,21 @@ public class MathService {
 
     public void setN(List<String> n) {
         this.n = n;
+    }
+
+    public Map<String, String> getQuerystring() {
+        return querystring;
+    }
+
+    public void setQuerystring(Map<String, String> querystring) {
+        this.querystring = querystring;
+    }
+
+    public WebRequest getWebRequest() {
+        return webRequest;
+    }
+
+    public void setWebRequest(WebRequest webRequest) {
+        this.webRequest = webRequest;
     }
 }

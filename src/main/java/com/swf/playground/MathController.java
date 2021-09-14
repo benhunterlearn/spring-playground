@@ -1,8 +1,10 @@
 package com.swf.playground;
 
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/math")
@@ -19,10 +21,14 @@ public class MathController {
     }
 
     @PostMapping("/sum")
-    public String postSum(MathService mathService) {
-        mathService.setOperation("sum");
+    public String postSum(MathService mathService, WebRequest webRequest, @RequestParam List<String> n) {
+        mathService.setWebRequest(webRequest);
+        mathService.setOperation("sum");  // There must be a better way.
         return mathService.toString();
+    }
 
-
+    @RequestMapping("/volume/{length}/{width}/{height}")
+    public String requestVolume(@PathVariable int length, @PathVariable int width, @PathVariable int height) {
+        return MathService.buildVolumeMathService(length, width, height).toString();
     }
 }
