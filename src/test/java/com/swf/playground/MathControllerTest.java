@@ -103,10 +103,21 @@ class MathControllerTest {
     @Test
     public void testPostVolumeWithLengthWidthHeight() throws Exception {
         // POST /math/volume/3/4/5 should render the result The volume of a 3x4x5 rectangle is 60
-        // PATCH /math/volume/6/7/8 should render the result The volume of a 6x7x8 rectangle is 336
 
         String expected = "The volume of a 3x4x5 rectangle is 60";
         RequestBuilder request = MockMvcRequestBuilders.post("/math/volume/3/4/5")
+                .accept(MediaType.TEXT_PLAIN);
+        this.mvc.perform(request)
+                .andExpect(status().isOk())
+                .andExpect(content().string(expected));
+    }
+
+    @Test
+    public void testPatchVolumeWithLengthWidthHeight() throws Exception {
+        // PATCH /math/volume/6/7/8 should render the result The volume of a 6x7x8 rectangle is 336
+
+        String expected = "The volume of a 6x7x8 rectangle is 336";
+        RequestBuilder request = MockMvcRequestBuilders.patch("/math/volume/6/7/8")
                 .accept(MediaType.TEXT_PLAIN);
         this.mvc.perform(request)
                 .andExpect(status().isOk())
