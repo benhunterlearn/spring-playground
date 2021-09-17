@@ -140,7 +140,7 @@ class MathControllerTest {
     public void testPostMathAreaRectangleWithHeightWidth() throws Exception {
         String expected = "Area of a 4x7 rectangle is 28";
         RequestBuilder request = MockMvcRequestBuilders.post("/math/area/")
-                .param("type", "rectangle")
+                .param("type", "asdfrectangle")
                 .param("width", "4")
                 .param("height", "7")
                 .accept(MediaType.APPLICATION_FORM_URLENCODED);

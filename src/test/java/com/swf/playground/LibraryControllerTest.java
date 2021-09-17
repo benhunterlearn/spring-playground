@@ -1,5 +1,6 @@
 package com.swf.playground;
 
+import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,51 @@ class LibraryControllerTest {
         this.mvc.perform(request)
                 .andExpect(status().isOk())
                 .andExpect(content().string(expected));
+    }
+
+    @Test
+    public void testStringRaw() throws Exception {
+        RequestBuilder request = MockMvcRequestBuilders.post("/library/string-raw")
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .param("one", "1")
+                .param("two", "2");
+
+        this.mvc.perform(request)
+                .andExpect(status().isOk());
+    }
+
+    @Ignore
+    @Test
+    public void testStringMap() throws Exception {
+        RequestBuilder request = MockMvcRequestBuilders.post("/library/string-map")
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+//                .param("one", "1")
+//                .param("two", "2")
+                .content("one=1&two=2");
+
+        this.mvc.perform(request)
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void testStringPojo() throws Exception {
+        RequestBuilder request = MockMvcRequestBuilders.post("/library/string-pojo")
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .param("one", "1")
+                .param("two", "2");
+
+        this.mvc.perform(request)
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void testStringPojoQueryString() throws Exception {
+        RequestBuilder request = MockMvcRequestBuilders.post("/library/string-pojo?one=1")
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .param("two", "2");
+
+
+        this.mvc.perform(request)
+                .andExpect(status().isOk());
     }
 }
