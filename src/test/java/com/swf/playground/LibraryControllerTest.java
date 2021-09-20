@@ -51,8 +51,8 @@ class LibraryControllerTest {
                 .andExpect(status().isOk());
     }
 
-    @Ignore
     @Test
+    @Ignore
     public void testStringMap() throws Exception {
         RequestBuilder request = MockMvcRequestBuilders.post("/library/string-map")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
