@@ -8,9 +8,10 @@ import java.util.List;
 
 public class Flight {
 
+    @JsonProperty("Departs")
     private LocalDateTime departs;
 
-    @JsonProperty("tickets")
+    @JsonProperty("Tickets")
     private List<Ticket> ticketsList;
 
     @JsonFormat(pattern = "YYYY-MM-dd HH:mm")

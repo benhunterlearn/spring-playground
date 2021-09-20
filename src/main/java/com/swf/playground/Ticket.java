@@ -1,7 +1,13 @@
 package com.swf.playground;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Ticket {
+
+    @JsonProperty("Passenger")
     private Person passenger;
+
+    @JsonProperty("Price")
     private int price;
 
     public int getPrice() {
