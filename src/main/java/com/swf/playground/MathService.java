@@ -7,153 +7,165 @@ import java.util.Map;
 
 public class MathService {
 
-    private String operation;
+	private String operation;
 
-    // x and y for the calculate operation
-    private String x;
-    private String y;
+	// x and y for the calculate operation
+	private String x;
 
-    // n for the sum operation
-    private List<String> n;
+	private String y;
 
-    // length, width, height for the volume operation
-    private int length;
-    private int width;
-    private int height;
+	// n for the sum operation
+	private List<String> n;
 
-    // for area calculations
-    private MathArea mathArea;
+	// length, width, height for the volume operation
+	private int length;
 
-    private WebRequest webRequest;  // not set by Spring Web MVC POJO mapping.
-    private Map<String, String> querystring;
+	private int width;
 
-    public MathService() {
-        // Default constructor needed for Spring Web MVC.
-    }
+	private int height;
 
-    public MathService(String operation, int length, int width, int height) {
-        this.operation = operation;
-        this.length = length;
-        this.width = width;
-        this.height = height;
-    }
+	// for area calculations
+	private MathArea mathArea;
 
-    public MathService(MathArea mathArea) {
-        this.mathArea = mathArea;
-    }
+	private WebRequest webRequest; // not set by Spring Web MVC POJO mapping.
 
-    public static MathService buildVolumeMathService(int length, int width, int height) {
-        return new MathService("volume", length, width, height);
-    }
+	private Map<String, String> querystring;
 
-    @Override
-    public String toString() {
+	public MathService() {
+		// Default constructor needed for Spring Web MVC.
+	}
 
-        if (mathArea != null) {
-            return mathArea.toString();
-        }
-        if (operation == null) {
-            if (x != null && y != null) {
-                operation = "add";
-            } else if (n != null) {
-                operation = "sum";
-            }
-        }
+	public MathService(String operation, int length, int width, int height) {
+		this.operation = operation;
+		this.length = length;
+		this.width = width;
+		this.height = height;
+	}
 
-        int intX = 0;
-        int intY = 0;
-        if (x != null && y != null) {
-            intX = Integer.valueOf(x);
-            intY = Integer.valueOf(y);
-        }
+	public MathService(MathArea mathArea) {
+		this.mathArea = mathArea;
 
-        int result;
-        String output = "";
-        if (operation.equals("add")) {
-            result = intX + intY;
-            output = x + " + " + y + " = " + result;
-        } else if (operation.equals("subtract")) {
-            result = intX - intY;
-            output = x + " - " + y + " = " + result;
-        } else if (operation.equals("multiply")) {
-            result = intX * intY;
-            output = x + " * " + y + " = " + result;
-        } else if (operation.equals("divide")) {
-            result = intX / intY;
-            output = x + " / " + y + " = " + result;
-        } else if (operation.equals("sum")) {
-            return sum();
-        } else if (operation.equals("volume")) {
-            return volume();
-        }
+	}
 
-        return output;
-    }
+	public static MathService buildVolumeMathService(int length, int width, int height) {
+		return new MathService("volume", length, width, height);
+	}
 
-    private String sum() {
+	@Override
+	public String toString() {
 
-        int result = 0;
-        for (String operand : n) {
-            result += Integer.valueOf(operand);
-        }
+		if (mathArea != null) {
+			return mathArea.toString();
+		}
+		if (operation == null) {
+			if (x != null && y != null) {
+				operation = "add";
+			}
+			else if (n != null) {
+				operation = "sum";
+			}
+		}
 
-        StringBuilder output = new StringBuilder();
-        output.append(String.join(" + ", n));
-        output.append(" = " + result);
+		int intX = 0;
+		int intY = 0;
+		if (x != null && y != null) {
+			intX = Integer.valueOf(x);
+			intY = Integer.valueOf(y);
+		}
 
-        return output.toString();
-    }
+		int result;
+		String output = "";
+		if (operation.equals("add")) {
+			result = intX + intY;
+			output = x + " + " + y + " = " + result;
+		}
+		else if (operation.equals("subtract")) {
+			result = intX - intY;
+			output = x + " - " + y + " = " + result;
+		}
+		else if (operation.equals("multiply")) {
+			result = intX * intY;
+			output = x + " * " + y + " = " + result;
+		}
+		else if (operation.equals("divide")) {
+			result = intX / intY;
+			output = x + " / " + y + " = " + result;
+		}
+		else if (operation.equals("sum")) {
+			return sum();
+		}
+		else if (operation.equals("volume")) {
+			return volume();
+		}
 
-    private String volume() {
-        int result = length * width * height;
-        return String.format("The volume of a %dx%dx%d rectangle is %d", length, width, height, result);
-    }
+		return output;
+	}
 
-    public String getOperation() {
-        return operation;
-    }
+	private String sum() {
 
-    public void setOperation(String operation) {
-        this.operation = operation;
-    }
+		int result = 0;
+		for (String operand : n) {
+			result += Integer.valueOf(operand);
+		}
 
-    public String getX() {
-        return x;
-    }
+		StringBuilder output = new StringBuilder();
+		output.append(String.join(" + ", n));
+		output.append(" = " + result);
 
-    public void setX(String x) {
-        this.x = x;
-    }
+		return output.toString();
+	}
 
-    public String getY() {
-        return y;
-    }
+	private String volume() {
+		int result = length * width * height;
+		return String.format("The volume of a %dx%dx%d rectangle is %d", length, width, height, result);
+	}
 
-    public void setY(String y) {
-        this.y = y;
-    }
+	public String getOperation() {
+		return operation;
+	}
 
-    public List<String> getN() {
-        return n;
-    }
+	public void setOperation(String operation) {
+		this.operation = operation;
+	}
 
-    public void setN(List<String> n) {
-        this.n = n;
-    }
+	public String getX() {
+		return x;
+	}
 
-    public Map<String, String> getQuerystring() {
-        return querystring;
-    }
+	public void setX(String x) {
+		this.x = x;
+	}
 
-    public void setQuerystring(Map<String, String> querystring) {
-        this.querystring = querystring;
-    }
+	public String getY() {
+		return y;
+	}
 
-    public WebRequest getWebRequest() {
-        return webRequest;
-    }
+	public void setY(String y) {
+		this.y = y;
+	}
 
-    public void setWebRequest(WebRequest webRequest) {
-        this.webRequest = webRequest;
-    }
+	public List<String> getN() {
+		return n;
+	}
+
+	public void setN(List<String> n) {
+		this.n = n;
+	}
+
+	public Map<String, String> getQuerystring() {
+		return querystring;
+	}
+
+	public void setQuerystring(Map<String, String> querystring) {
+		this.querystring = querystring;
+	}
+
+	public WebRequest getWebRequest() {
+		return webRequest;
+	}
+
+	public void setWebRequest(WebRequest webRequest) {
+		this.webRequest = webRequest;
+	}
+
 }

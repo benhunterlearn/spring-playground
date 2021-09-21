@@ -1,19 +1,17 @@
 package com.swf.playground;
 
 public class BookSearch {
+
     private String author;
+
     private String ISBN;
+
     private String title;
 
     @Override
     public String toString() {
-        return "BookSearch{" +
-                "author='" + author + '\'' +
-                ", ISBN='" + ISBN + '\'' +
-                ", title='" + title + '\'' +
-                '}';
+        return "BookSearch{" + "author='" + this.author + '\'' + ", ISBN='" + this.ISBN + '\'' + ", title='" + this.title + '\'' + '}';
     }
-
 
     public String getTitle() {
         return title;
@@ -24,7 +22,7 @@ public class BookSearch {
     }
 
     public String getAuthor() {
-        return author;
+        return this.author;
     }
 
     public void setAuthor(String author) {
@@ -32,12 +30,11 @@ public class BookSearch {
     }
 
     public String getISBN() {
-        return ISBN;
+        return this.ISBN;
     }
 
     public void setISBN(String ISBN) {
         this.ISBN = ISBN;
     }
-
 
 }

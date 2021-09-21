@@ -1,30 +1,30 @@
 package com.swf.playground;
 
 public class Pojo {
-    private String one;
-    private String two;
 
-    @Override
-    public String toString() {
-        return "Pojo{" +
-                "one='" + one + '\'' +
-                ", two='" + two + '\'' +
-                '}';
-    }
+	private String one;
 
-    public String getOne() {
-        return one;
-    }
+	private String two;
 
-    public void setOne(String one) {
-        this.one = one;
-    }
+	@Override
+	public String toString() {
+		return "Pojo{" + "one='" + one + '\'' + ", two='" + two + '\'' + '}';
+	}
 
-    public String getTwo() {
-        return two;
-    }
+	public String getOne() {
+		return one;
+	}
 
-    public void setTwo(String two) {
-        this.two = two;
-    }
+	public void setOne(String one) {
+		this.one = one;
+	}
+
+	public String getTwo() {
+		return two;
+	}
+
+	public void setTwo(String two) {
+		this.two = two;
+	}
+
 }

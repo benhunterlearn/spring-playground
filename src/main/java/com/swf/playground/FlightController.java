@@ -14,44 +14,45 @@ import java.util.List;
 @RequestMapping("/flights")
 public class FlightController {
 
-    @GetMapping("/flight")
-    public Flight getFlight() {
-        Flight flight = new Flight();
-        flight.setDeparts(LocalDateTime.of(2017, Month.APRIL, 21, 14, 34));
+	@GetMapping("/flight")
+	public Flight getFlight() {
+		Flight flight = new Flight();
+		flight.setDeparts(LocalDateTime.of(2017, Month.APRIL, 21, 14, 34));
 
-        Person passenger = new Person();
-        passenger.setFirstName("Ro");
-        passenger.setLastName("Block");
+		Person passenger = new Person();
+		passenger.setFirstName("Ro");
+		passenger.setLastName("Block");
 
-        Ticket ticket = new Ticket();
-        ticket.setPassenger(passenger);
-        ticket.setPrice(100);
+		Ticket ticket = new Ticket();
+		ticket.setPassenger(passenger);
+		ticket.setPrice(100);
 
-        flight.setTicketsList(Arrays.asList(ticket));
+		flight.setTicketsList(Arrays.asList(ticket));
 
-        return flight;
-    }
+		return flight;
+	}
 
-    @GetMapping("")
-    public List<Flight> getFlightsList() {
-        List<Flight> flightsList = new ArrayList<>();
+	@GetMapping("")
+	public List<Flight> getFlightsList() {
+		List<Flight> flightsList = new ArrayList<>();
 
-        Flight flight = new Flight();
-        flight.setDeparts(LocalDateTime.of(2017, Month.APRIL, 21, 14, 34));
+		Flight flight = new Flight();
+		flight.setDeparts(LocalDateTime.of(2017, Month.APRIL, 21, 14, 34));
 
-        Person passenger = new Person();
-        passenger.setFirstName("Ro");
-        passenger.setLastName("Block");
+		Person passenger = new Person();
+		passenger.setFirstName("Ro");
+		passenger.setLastName("Block");
 
-        Ticket ticket = new Ticket();
-        ticket.setPassenger(passenger);
-        ticket.setPrice(100);
+		Ticket ticket = new Ticket();
+		ticket.setPassenger(passenger);
+		ticket.setPrice(100);
 
-        flight.setTicketsList(Arrays.asList(ticket));
+		flight.setTicketsList(Arrays.asList(ticket));
 
-        flightsList.add(flight);
-        flightsList.add(flight);
+		flightsList.add(flight);
+		flightsList.add(flight);
 
-        return flightsList;
-    }
+		return flightsList;
+	}
+
 }

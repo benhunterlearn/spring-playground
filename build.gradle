@@ -1,3 +1,15 @@
+// adding Spring Java Format plugins
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("io.spring.javaformat:spring-javaformat-gradle-plugin:0.0.28")
+	}
+}
+// end adding Spring Java Format plugins
+
+// original script begins
 plugins {
 	id 'org.springframework.boot' version '2.5.4'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
@@ -23,3 +35,15 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
+// original script ends
+
+// adding Spring Java Format plugins
+apply plugin: 'io.spring.javaformat'
+apply plugin: 'checkstyle'
+checkstyle {
+	toolVersion = "8.32"
+}
+dependencies {
+	checkstyle("io.spring.javaformat:spring-javaformat-checkstyle:0.0.28")
+}
+// end adding Spring Java Format plugins

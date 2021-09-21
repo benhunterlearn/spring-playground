@@ -24,36 +24,34 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class StringsControllerTest {
 
-//    @Autowired
-    @MockBean
-    WordCounter wordCounter;
+	// @Autowired
+	@MockBean
+	WordCounter wordCounter;
 
-    @Autowired
-    MockMvc mockMvc;
+	@Autowired
+	MockMvc mockMvc;
 
-//    @Test
-//    public void testStringsControllerExists() {
-//        assertNotNull(this.stringsController);
-//    }
+	// @Test
+	// public void testStringsControllerExists() {
+	// assertNotNull(this.stringsController);
+	// }
 
-    @BeforeEach
-    public void setup() {
-        Map<String, Integer> expected = new HashMap<>();
-        expected.put("one", 2);
-        expected.put("two", 1);
+	@BeforeEach
+	public void setup() {
+		Map<String, Integer> expected = new HashMap<>();
+		expected.put("one", 2);
+		expected.put("two", 1);
 
-        when(wordCounter.count("one two one")).thenReturn(expected);
-    }
+		when(wordCounter.count("one two one")).thenReturn(expected);
+	}
 
-    @Test
-    public void postWordCountReturnsJSONWithWordCount() throws Exception {
-        String message = "one two one";
-        RequestBuilder request = MockMvcRequestBuilders.post("/word/count")
-                .content(message);
+	@Test
+	public void postWordCountReturnsJSONWithWordCount() throws Exception {
+		String message = "one two one";
+		RequestBuilder request = MockMvcRequestBuilders.post("/word/count").content(message);
 
-        mockMvc.perform(request)
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(content().json("{\"one\":2,\"two\":1}"));
-    }
+		mockMvc.perform(request).andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON))
+				.andExpect(content().json("{\"one\":2,\"two\":1}"));
+	}
+
 }

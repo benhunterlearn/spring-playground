@@ -10,16 +10,16 @@ import java.util.Map;
 @RestController
 public class StringsController {
 
-//    @Autowired
-    private WordCounter wordCounter;
+	// @Autowired
+	private final WordCounter wordCounter;
 
-    public StringsController(WordCounter wordCounter) {
-        this.wordCounter = wordCounter;
-    }
+	public StringsController(WordCounter wordCounter) {
+		this.wordCounter = wordCounter;
+	}
 
+	@PostMapping("/word/count")
+	public Map<String, Integer> postWordCount(@RequestBody String body) {
+		return wordCounter.count(body);
+	}
 
-    @PostMapping("/word/count")
-    public Map<String, Integer> postWordCount(@RequestBody String body) {
-        return wordCounter.count(body);
-    }
 }

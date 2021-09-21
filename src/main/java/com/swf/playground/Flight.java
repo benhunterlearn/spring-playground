@@ -8,26 +8,27 @@ import java.util.List;
 
 public class Flight {
 
-    @JsonProperty("Departs")
-    private LocalDateTime departs;
+	@JsonProperty("Departs")
+	private LocalDateTime departs;
 
-    @JsonProperty("Tickets")
-    private List<Ticket> ticketsList;
+	@JsonProperty("Tickets")
+	private List<Ticket> ticketsList;
 
-    @JsonFormat(pattern = "YYYY-MM-dd HH:mm")
-    public LocalDateTime getDeparts() {
-        return departs;
-    }
+	@JsonFormat(pattern = "YYYY-MM-dd HH:mm")
+	public LocalDateTime getDeparts() {
+		return departs;
+	}
 
-    public void setDeparts(LocalDateTime departs) {
-        this.departs = departs;
-    }
+	public void setDeparts(LocalDateTime departs) {
+		this.departs = departs;
+	}
 
-    public List<Ticket> getTicketsList() {
-        return ticketsList;
-    }
+	public List<Ticket> getTicketsList() {
+		return ticketsList;
+	}
 
-    public void setTicketsList(List<Ticket> ticketsList) {
-        this.ticketsList = ticketsList;
-    }
+	public void setTicketsList(List<Ticket> ticketsList) {
+		this.ticketsList = ticketsList;
+	}
+
 }
