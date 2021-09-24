@@ -1,5 +1,6 @@
 package com.swf.playground;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,6 +35,17 @@ public class FlightController {
 
 	@GetMapping("")
 	public List<Flight> getFlightsList() {
+		return generateFlightsList();
+	}
+
+
+	@JsonView(Views.ShortView.class)
+	@GetMapping("/compact")
+	public List<Flight> getFlightsListCompact() {
+		return generateFlightsList();
+	}
+
+	private List<Flight> generateFlightsList() {
 		List<Flight> flightsList = new ArrayList<>();
 
 		Flight flight = new Flight();
@@ -54,5 +66,7 @@ public class FlightController {
 
 		return flightsList;
 	}
+
+	record Activity(String user, String status) {};
 
 }

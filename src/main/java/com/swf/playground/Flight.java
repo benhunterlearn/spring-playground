@@ -2,15 +2,18 @@ package com.swf.playground;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class Flight {
 
+	@JsonView(Views.ShortView.class)
 	@JsonProperty("Departs")
 	private LocalDateTime departs;
 
+	@JsonView(Views.ShortView.class)
 	@JsonProperty("Tickets")
 	private List<Ticket> ticketsList;
 
