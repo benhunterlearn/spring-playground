@@ -22,7 +22,7 @@ public class WordCounterTest {
 		expected.put("one", 2);
 		expected.put("two", 1);
 
-		assertEquals(wordCounter.count(input), expected);
+		assertEquals(expected, wordCounter.count(input));
 	}
 
 }
