@@ -1,5 +1,6 @@
-package com.swf.playground;
+package com.swf.playground.service;
 
+import com.swf.playground.model.MathArea;
 import org.springframework.web.context.request.WebRequest;
 
 import java.util.List;

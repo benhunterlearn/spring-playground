@@ -1,5 +1,6 @@
-package com.swf.playground;
+package com.swf.playground.configuration;
 
+import com.swf.playground.service.WordCounter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

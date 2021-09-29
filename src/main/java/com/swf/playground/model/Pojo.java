@@ -1,4 +1,4 @@
-package com.swf.playground;
+package com.swf.playground.model;
 
 public class Pojo {
 

@@ -1,7 +1,8 @@
-package com.swf.playground;
+package com.swf.playground.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
+import com.swf.playground.view.Views;
 
 public class Ticket {
 

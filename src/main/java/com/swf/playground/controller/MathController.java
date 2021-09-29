@@ -1,10 +1,11 @@
-package com.swf.playground;
+package com.swf.playground.controller;
 
+import com.swf.playground.model.MathArea;
+import com.swf.playground.service.MathService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/math")

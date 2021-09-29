@@ -1,6 +1,10 @@
-package com.swf.playground;
+package com.swf.playground.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.swf.playground.model.Flight;
+import com.swf.playground.model.Person;
+import com.swf.playground.model.Ticket;
+import com.swf.playground.view.Views;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

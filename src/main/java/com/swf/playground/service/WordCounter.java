@@ -1,4 +1,4 @@
-package com.swf.playground;
+package com.swf.playground.service;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

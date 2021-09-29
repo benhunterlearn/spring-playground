@@ -1,8 +1,9 @@
-package com.swf.playground;
+package com.swf.playground.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
+import com.swf.playground.view.Views;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Person {

@@ -1,4 +1,4 @@
-package com.swf.playground;
+package com.swf.playground.view;
 
 public class Views {
     public interface ShortView {};

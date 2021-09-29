@@ -1,5 +1,7 @@
-package com.swf.playground;
+package com.swf.playground.controller;
 
+import com.swf.playground.model.BookSearch;
+import com.swf.playground.model.Pojo;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
